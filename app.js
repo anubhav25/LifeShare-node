@@ -21,7 +21,7 @@ server.listen(port, () => {
     console.log('listning')
 });;
 var dburl = 'mongodb://localhost/lifeshare';
-//dburl = 'mongodb://test:test@ds247698.mlab.com:47698/lifeshare'
+dburl = 'mongodb://test:test@ds119129.mlab.com:19129/lifeshare'
 mongoose.connect(dburl);
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
