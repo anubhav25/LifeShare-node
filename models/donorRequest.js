@@ -1,4 +1,4 @@
- var mongoose = require('mongoose');
+var mongoose = require('mongoose');
 var donorSchema = new mongoose.Schema({
     email: {
         type: String,
@@ -50,4 +50,4 @@ var donorSchema = new mongoose.Schema({
     }
 
 });
-module.exports = mongoose.model('donors', donorSchema);
+module.exports = mongoose.model('donorsRequest', donorSchema);

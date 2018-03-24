@@ -5,13 +5,13 @@ var path = require('path');
 var mongoose = require('mongoose');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
-var cookieParser = require('cookie-parser');
+var clientSessions = require("client-sessions");
 var bodyParser = require('body-parser');
+var adminLogin = require('./models/adminLogin')
 
 
-var index = require('./routes/index');
-var users = require('./routes/users');
 var api = require('./routes/api');
+var admin = require('./routes/admin');
 
 var app = express();
 var port = process.env.PORT || '3000';
@@ -32,12 +32,43 @@ app.set('view engine', 'ejs');
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(clientSessions({
 
-app.use('/', index);
+    secret: 'this_can_be_anything_but_not_this_or_this_but_anything', // should be a large unguessable string
+    duration: 24 * 60 * 60 * 1000, // how long the session will stay valid in ms
+    httpOnly: true,
+    secure: true,
+    ephemeral: true,
+
+    activeDuration: 1000 * 60 * 15// if expiresIn < activeDuration, the session will be extended by activeDuration milliseconds
+
+}));
+
+app.use(function(req, res, next) {
+    if (req.session_state && req.session_state.user) {
+       adminLogin.findOne({ username: req.session_state.user.username }, function(err, user) {
+         if (user) {
+         req.user = user;
+         console.log(user);
+         delete req.user.password; // delete the password from the session
+          delete  req.user._id;
+         req.session_state.user = user;  //refresh the session value
+         res.locals.user = user;
+         }
+            console.log(req.user);
+         next();
+         });
+
+    }
+   else
+    {
+      next();
+
+    }
+});
 app.use('/', api);
-app.use('/users', users);
+app.use('/', admin);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

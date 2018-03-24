@@ -31,4 +31,4 @@ var bloodBankSchema = new mongoose.Schema({
     }
 
 });
-module.exports = mongoose.model('bloodBanks', bloodBankSchema);
+module.exports = mongoose.model('bloodBanksRequest', bloodBankSchema);
