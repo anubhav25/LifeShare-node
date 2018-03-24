@@ -12,10 +12,7 @@ var bloodBankSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    address : {
-        type: String,
-        required : true
-    },
+
     document :{
         type: String,
         required: true
