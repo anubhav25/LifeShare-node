@@ -90,7 +90,7 @@ app.get('/acceptDonor/:email', (req, res) => {
             myuser.save((err, dbdonor) => {
                 if (err) {
                     console.log(err);
-                    res.json({ resp: false, error: 'server 2 error!!' , err: err});
+                    res.json({ resp: false, error: 'server 2 error!!' , err: err, obj: data});
                 } else {
                     donorRequest.remove({ email: dbdonor.email }, (err) => {
                         if (err) {
