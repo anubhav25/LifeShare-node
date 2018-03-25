@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-var bloodBankSchema = new mongoose.Schema({
+var bloodBankRequestSchema = new mongoose.Schema({
        email: {
         type: String,
         required : true
@@ -28,4 +28,4 @@ var bloodBankSchema = new mongoose.Schema({
     }
 
 });
-module.exports = mongoose.model('bloodBanksRequest', bloodBankSchema);
+module.exports = mongoose.model('bloodBanksRequest', bloodBankRequestSchema);
