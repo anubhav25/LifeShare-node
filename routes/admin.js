@@ -81,7 +81,10 @@ app.get('/profile/:id', (req, res, next) => {
 
 
 app.get('/acceptDonor/:email', (req, res) => {
-    donorRequest.findOne({ 'email': req.params.email },{_id : 0, _v: 0}, (err, data) => {
+    var email = req.params.email;
+    console.log(email);
+    
+    donorRequest.findOne({ email: email },{_id : 0, _v: 0}, (err, data) => {
         if (err) {
             res.json({ resp: false, error: 'server 1 error!!' });
         } else {
