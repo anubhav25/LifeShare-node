@@ -83,18 +83,18 @@ app.get('/profile/:id', (req, res, next) => {
 app.get('/acceptDonor/:email', (req, res) => {
     donorRequest.findOne({ 'email': req.params.email },{_id : 0, _v: 0}, (err, data) => {
         if (err) {
-            res.json({ resp: false, error: 'server error!!' });
+            res.json({ resp: false, error: 'server 1 error!!' });
         } else {
 
             var myuser = new donor(data);
             myuser.save((err, dbdonor) => {
                 if (err) {
                     console.log(err);
-                    res.json({ resp: false, error: 'server error!!' });
+                    res.json({ resp: false, error: 'server 2 error!!' });
                 } else {
                     donorRequest.remove({ email: dbdonor.email }, (err) => {
                         if (err) {
-                            res.json({ resp: false, error: 'server error!!' });
+                            res.json({ resp: false, error: 'server 3 error!!' });
                         } else {
                             res.json({ resp: true });
                             sendMail('registration successful at LifeShare', `
@@ -111,7 +111,7 @@ app.get('/acceptDonor/:email', (req, res) => {
 
 
 
-app.get('/rejectUser/:id', (req, res) => {
+app.get('/rejectDonor/:id', (req, res) => {
     donorRequest.remove({ email: req.params.id }, (err) => {
         if (err) {
             res.json({ resp: false, error: 'server error!!' });
