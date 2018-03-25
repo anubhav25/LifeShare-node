@@ -89,7 +89,7 @@ app.get('/acceptDonor/:email', (req, res) => {
             res.json({ resp: false, error: 'server 1 error!!' });
         } else {
             delete data._id;
-            delete data._v;
+            delete data.__v;
 
             var myuser = new donor(data);
             myuser.save((err, dbdonor) => {
