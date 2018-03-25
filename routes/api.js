@@ -105,19 +105,19 @@ app.post('/registerBank', (req, res) => {
         } else {
             bloodBankRequest.findOne({ email: req.body.email }, (err, bank) => {
                 if (err) {
-                    res.json({ error: 'server error!!', resp: false });
+                    res.json({ error: 'server 1 error!!', resp: false });
                 } else if (bank) {
                     res.json({ error: 'email already exists.', resp: false });
                 } else {
 donor.findOne({ email: req.body.email }, (err, mydonor) => {
         if (err) {
-            res.json({ error: 'server error!!', resp: false });
+            res.json({ error: 'server 2 error!!', resp: false });
         } else if (mydonor) {
             res.json({ error: 'email already exists.', resp: false });
         } else {
             bloodBank.findOne({ email: req.body.email }, (err, bank) => {
                 if (err) {
-                    res.json({ error: 'server error!!', resp: false });
+                    res.json({ error: 'server 3 error!!', resp: false });
                 } else if (bank) {
                     res.json({ error: 'email already exists.', resp: false });
                 } else {
@@ -125,6 +125,7 @@ donor.findOne({ email: req.body.email }, (err, mydonor) => {
                         if (bank) {
                             res.json({ resp: true });
                         } else {
+                        		console.log(err);
                             res.json({ error: 'Invalid Details', resp: false });
                         }
                     });

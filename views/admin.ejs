@@ -22,7 +22,7 @@
 <body id="page-top">
     <div class="main_page">
     <!-- Navigation -->
-<nav class="navbar navbar-expand-md navbar-light fixed-top" id="mainNav">
+<nav class="navbar navbar-expand-md navbar-light" id="mainNav">
     <div class="container">
             <a class="navbar-brand js-scroll-trigger" href="/">LifeShare</a>
             <ul class="navbar-nav ml-auto pull-right">
@@ -32,32 +32,57 @@
             </ul>
     </div>
 </nav>
-    <header class="masthead">
+    <header class="masthead" style="margin-bottom:100px;margin-top:10px;">
         <div class="intro-body">
             <div class="container" style="height: 100%">
-                <div class="row mt-5" >
+            <%  if(banks && banks.length ) { %>
+              For Blood Banks
+<hr/>  <div class="row mt-5" >
 
-                    <%  if(users && users.length ) { for(var user of users) { %>
-         <div class="col-lg-3 col-md-4 col-sm-5 col-10 mx-auto mt-4" id=<%= user.email %> >
+                    <% for(var bank of banks) { %>
+         <div class="col-lg-3 col-md-4 col-sm-5 col-10 mx-auto mt-4" id="<%= bank.email %>" >
             <div class="card">
                 <div class="card-block"><center>
-                    <h5 class="card-title"><%= user.name %> </h5>
-                    <h6 class="card-text"><%= user.email %></h6>
-                    <h6 class="card-text"><%= user.phoneNo %></h6>
-        
-                    <button class="btn btn-outline-info m-1" (click)="viewProfile(user.username)">View Profile <i class="fa fa-user"></i></button>
+                    <h5 class="card-title"><%= bank.name %></h5>
+                    <h6 class="card-text"><%= bank.email %></h6>
+                    <h6 class="card-text"><%= bank.phoneNo %></h6>
+                    <a class="btn btn-outline-info m-1" href="/profile/<%= bank.email %>" >View Profile <i class="fa fa-user"></i></a>
 
                     <div class="">
-                        <button class="btn btn-outline-success m-1" (click)="accept(user.username)">Accept <i class="fa fa-check"></i></button>
-                        <button class="btn btn-outline-danger m-1" (click)="reject(user.username)">Reject <i class="fa fa-ban"></i></button>
+                        <a class="btn btn-outline-success m-1" href="/acceptDonor/<%= bank.email %>">Accept <i class="fa fa-check"></i></a>
+                        <a class="btn btn-outline-danger m-1" href="/rejectDonor/<%= bank.email %>">Reject <i class="fa fa-ban"></i></a>
                     </div>
 </center>
                 </div>
             </div>
         </div>
-        <% }
-    } %>
+      <% }%>
+      </div>
+    <%  } %>
+ <%  if(users && users.length ) { %>
+For Donors
+<hr/>
+ <div class="row mt-5" >
+                    <%   for(var user of users) { %>
+         <div class="col-lg-3 col-md-4 col-sm-5 col-10 mx-auto mt-4" id="<%= user.email %>" >
+            <div class="card">
+                <div class="card-block"><center>
+                    <h5 class="card-title"><%= user.name %></h5>
+                    <h6 class="card-text"><%= user.email %></h6>
+                    <h6 class="card-text"><%= user.phoneNo %></h6>
+                    <a class="btn btn-outline-info m-1" href="/profile/<%= user.email %>" >View Profile <i class="fa fa-user"></i></a>
+
+                    <div class="">
+                        <a class="btn btn-outline-success m-1" href="/acceptDonor/<%= user.email %>">Accept <i class="fa fa-check"></i></a>
+                        <a class="btn btn-outline-danger m-1" href="/rejectDonor/<%= user.email %>">Reject <i class="fa fa-ban"></i></a>
+                    </div>
+</center>
                 </div>
+            </div>
+        </div>
+       <% }%>
+      </div>
+    <%  } %>
             </div>
         </div>
     </header>

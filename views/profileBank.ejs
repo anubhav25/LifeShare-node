@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="../assets/images/favicon.png">
+    <title>LifeShare</title>
+
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/style.css" rel="stylesheet">
+    <link href="css/colors/blue.css" id="theme" rel="stylesheet">
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+</head>
+
+<body class="fix-header fix-sidebar card-no-border">
+        <div class="page-wrapper">
+    <nav class="navbar navbar-expand-md navbar-primary" id="mainNav">
+    <div class="container">
+            <a class="navbar-brand js-scroll-trigger" href="/">LifeShare</a>
+            <ul class="navbar-nav ml-auto pull-right">
+                <li class="nav-item">
+                    <a class="btn btn-outline-success buttonIcon pull-right" href = "/logout"><span class="buttonText">logout&nbsp;</span><i class='fa fa-sign-out'></i></a>
+                </li>
+            </ul>
+    </div>
+</nav>
+            <div class="container-fluid mt-3" >
+                <div class="row">
+                    <div class="col-md-6 col-xlg-5">
+                        <div class="card">
+                            <div class="card-block">
+                                <center class="m-t-30"> <img src="<%= user.document %>" class="img-circle col-12" />
+                                    <h4 class="card-title m-t-10">Front</h4>
+                                </center>
+                            </div>
+                        </div>
+                    </div>
+                     <div class="col-md-6 col-xlg-7">
+                        <div class="card">
+                            <div class="card-block">
+                                 <div class="form-group">
+                                        <label class="col-md-12">Name</label>
+                                        <div class="col-md-12">
+                                            <input type="text" disabled="disabled" value="<%= user.name %>" class="form-control form-control-line">
+                                        </div>
+                                    </div>
+                                <form class="form-horizontal form-material">
+                                    <div class="form-group">
+                                        <label for="example-email" class="col-md-12">Email</label>
+                                        <div class="col-md-12">
+                                            <input type="email" disabled="disabled" value="<%= user.email %>" class="form-control form-control-line" name="example-email" id="example-email">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-12">Phone No</label>
+                                        <div class="col-md-12">
+                                            <input type="text" disabled="disabled" value="<%= user.phoneNo %>" class="form-control form-control-line">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-12">Longitude</label>
+                                        <div class="col-md-12">
+                                            <input type="text" disabled="disabled" value="<%= user.longitude %>" class="form-control form-control-line">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-12">Latitude</label>
+                                        <div class="col-md-12">
+                                            <input type="text" disabled="disabled" value="<%= user.latitude %>" class="form-control form-control-line">
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+</div>
+                </div>
+            </div>
+        </div>
+    </div>
+ <script src="/vendor/jquery/jquery.min.js"></script>
+    <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/vendor/bootstrap/js/tether.min.js"></script>
+    <script src="js/jquery.slimscroll.js"></script>
+    <script src="js/waves.js"></script>
+    <script src="js/sidebarmenu.js"></script>
+    <script src="../assets/plugins/sticky-kit-master/dist/sticky-kit.min.js"></script>
+</body>
+
+</html>
