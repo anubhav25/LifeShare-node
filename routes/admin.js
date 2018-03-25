@@ -80,13 +80,13 @@ app.get('/profile/:id', (req, res, next) => {
 });
 
 
-app.post('/acceptDonor', (req, res) => {
-    donorRequest.findOne({ 'email': req.body.email }, (err, data) => {
+app.get('/acceptDonor/:email', (req, res) => {
+    donorRequest.findOne({ 'email': req.params.email },{_id : 0, _v: 0}, (err, data) => {
         if (err) {
             res.json({ resp: false, error: 'server error!!' });
         } else {
 
-            var myuser = new donor(req.body);
+            var myuser = new donor(data);
             myuser.save((err, dbdonor) => {
                 if (err) {
                     console.log(err);
@@ -111,8 +111,8 @@ app.post('/acceptDonor', (req, res) => {
 
 
 
-app.post('/rejectUser', (req, res) => {
-    donorRequest.remove({ email: req.body.email }, (err) => {
+app.get('/rejectUser/:id', (req, res) => {
+    donorRequest.remove({ email: req.params.id }, (err) => {
         if (err) {
             res.json({ resp: false, error: 'server error!!' });
         } else {
