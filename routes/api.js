@@ -111,7 +111,7 @@ app.post('/registerBank', (req, res) => {
                 } else {
 donor.findOne({ email: req.body.email }, (err, mydonor) => {
         if (err) {
-            res.json({ error: 'server 2 error!!', resp: false });
+            res.json({ error: 'server error!!', resp: false });
         } else if (mydonor) {
             res.json({ error: 'email already exists.', resp: false });
         } else {
@@ -152,6 +152,46 @@ app.post('/verifyemail', (req, res) => {
         res.json({ error: 'email or OTP not found', resp: false });
     }
 });
+app.get('/isOldUser/:email',(req,res)=>{
+    bloodBank.findOne({email : req.params.email},(err,bank)=>{
+         if (err) {
+            res.json({ error: 'server error!!', respCode: 0 });
+        } else if(bank){
+            res.json({resCode : 1})
+        } else {
+                donor.findOne({email : req.params.email},(err,bank)=>{
+         if (err) {
+            res.json({ error: 'server error!!', respCode: 0 });
+        } else if(bank){
+            res.json({resCode : 2})
+        } else {
+    bloodBankRequest.findOne({email : req.params.email},(err,bank)=>{
+         if (err) {
+            res.json({ error: 'server error!!', respCode: 0 });
+        } else if(bank){
+            res.json({resCode : 3})
+        } else {
+
+    donorRequest.findOne({email : req.params.email},(err,bank)=>{
+         if (err) {
+            res.json({ error: 'server error!!', respCode: 0 });
+        } else if(bank){
+            res.json({resCode : 4})
+        } else {
+ res.json({resCode : 5})
+
+        }
+    });
+        }
+    });
+
+        }
+    });
+
+        }
+    });
+})
+
 app.get('/isDonorAccepted/:email',(req,res)=>{
     donor.findOne({ email: req.params.email }, (err, mydonor) => {
         if (err) {
