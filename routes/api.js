@@ -1,3 +1,4 @@
+
 var express = require('express');
 var sendMail = require('./email');
 var donor = require('../models/donor')
@@ -5,21 +6,9 @@ var bloodBank = require('../models/bloodBank')
 var donorRequest = require('../models/donorRequest');
 var bloodBankRequest = require('../models/bloodBankRequest');
 var app = express.Router();
-app.get('/test',(req,res)=>{
-    (new bloodBank({
-    email :'jyotverma@gmail.com',
-    name : 'NLJP',
-    phoneNo : '9898989898',
-    BloodGroup : 'O+',
-    documentFront : '/images/a.jpg',
-    documentBack : '/images/b.jpg',
-    longitude :  76.816051,
-    latitude : 29.9604494
-})).save((err, donor) => {
-                       console.log(err || donor)
-                       res.end();
-                    });
-})
+    var fcm = require('./fcm');
+
+
 app.post('/registerDonor', (req, res) => {
 /*    bloodBank.findOne({ email: req.body.email }, (err, bank) => {
         if (err) {
@@ -233,4 +222,24 @@ app.get('/isBankAccepted/:email',(req,res)=>{
 })
 })
 
+app.get('/requireBlood/:email/:group',(req,res)=>{
+    var email = req.params.email;
+    var group = req.params.group;
+    bloodBank.findOne({email : email},(err,bank)=>{
+        if(err) {
+            res.json({resp : false , error : 'server error!!'});
+        } else {
+            fcm(` ${group} Blood required`,{ name : bank.name ,
+                                            longitude : bank.longitude ,
+                                            latitude : bank.latitude ,
+                                            phoneNo : bank.phoneNo ,
+                                            email : email },email,res);
+        }
+
+    })
+})
+
+app.get('/subscribeMe/:log/:lat',(req,res)=>{
+
+})
 module.exports = app;
