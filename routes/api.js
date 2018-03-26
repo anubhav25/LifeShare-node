@@ -157,28 +157,28 @@ app.get('/isOldUser/:email',(req,res)=>{
          if (err) {
             res.json({ error: 'server error!!', respCode: 0 });
         } else if(bank){
-            res.json({resCode : 1})
+            res.json({respCode : 1,user : bank})
         } else {
                 donor.findOne({email : req.params.email},(err,bank)=>{
          if (err) {
             res.json({ error: 'server error!!', respCode: 0 });
         } else if(bank){
-            res.json({resCode : 2})
+            res.json({respCode : 2,user : bank})
         } else {
     bloodBankRequest.findOne({email : req.params.email},(err,bank)=>{
          if (err) {
             res.json({ error: 'server error!!', respCode: 0 });
         } else if(bank){
-            res.json({resCode : 3})
+            res.json({respCode : 3,user : bank})
         } else {
 
     donorRequest.findOne({email : req.params.email},(err,bank)=>{
          if (err) {
             res.json({ error: 'server error!!', respCode: 0 });
         } else if(bank){
-            res.json({resCode : 4})
+            res.json({respCode : 4,user : bank})
         } else {
- res.json({resCode : 5})
+ res.json({respCode : 5})
 
         }
     });
