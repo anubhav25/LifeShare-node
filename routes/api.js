@@ -240,6 +240,18 @@ app.get('/requireBlood/:email/:group',(req,res)=>{
 })
 
 app.get('/subscribeMe/:log/:lat',(req,res)=>{
+    var longitude = parseFloat(req.params.log);
+    var latitude = parseFloat(req.params.lat);
+    bank.find({})
+    .where('longitude').gt(longitude - 0.005).lt(longitude + 0.005)
+    .where('latitude').gt(latitude - 0.005).lt(latitude + 0.005)
+    .exec((err,resp)=>{
+        if(err){
+            res.json(resp:false, error : 'server error!!');
+        } else {
+            res.json(resp : true,data : resp);
+        }
+    })
 
 })
 module.exports = app;
