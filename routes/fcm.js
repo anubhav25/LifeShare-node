@@ -9,6 +9,7 @@ var serviceAccount = require('../key.json')
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
+  databaseURL : "https://mylifeshare-8e6ff.firebaseio.com"
 });
 
 var baseTopic = "/topics/";

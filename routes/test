@@ -1,0 +1,2 @@
+var a = require('./fcm');
+a('abc','cde','all',{ json :()=>{}});
