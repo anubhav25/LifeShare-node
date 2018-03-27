@@ -243,8 +243,8 @@ app.get('/subscribeMe/:log/:lat',(req,res)=>{
     var longitude = parseFloat(req.params.log);
     var latitude = parseFloat(req.params.lat);
     bank.find({})
-    .where('longitude').gt(longitude - 0.005).lt(longitude + 0.005)
-    .where('latitude').gt(latitude - 0.005).lt(latitude + 0.005)
+    .where('longitude').gt(longitude - 0.5).lt(longitude + 0.5)
+    .where('latitude').gt(latitude - 0.5).lt(latitude + 0.5)
     .exec((err,resp)=>{
         if(err){
             res.json(resp:false, error : 'server error!!');
