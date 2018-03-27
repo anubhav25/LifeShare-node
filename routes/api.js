@@ -242,14 +242,14 @@ app.get('/requireBlood/:email/:group',(req,res)=>{
 app.get('/subscribeMe/:log/:lat',(req,res)=>{
     var longitude = parseFloat(req.params.log);
     var latitude = parseFloat(req.params.lat);
-    bank.find({})
+    bank.findOne({})
     .where('longitude').gt(longitude - 0.5).lt(longitude + 0.5)
     .where('latitude').gt(latitude - 0.5).lt(latitude + 0.5)
     .exec((err,resp)=>{
         if(err){
-            res.json(resp:false, error : 'server error!!');
+            res.json({resp:false, error : 'server error!!'});
         } else {
-            res.json(resp : true,data : resp);
+            res.json({resp : true,data : resp});
         }
     })
 

@@ -58,8 +58,7 @@
         </div>
       <% }%>
       </div>
-    <%  } %>
- <%  if(users && users.length ) { %>
+    <%  } else  if(users && users.length ) { %>
 For Donors
 <hr/>
  <div class="row mt-5" >
@@ -82,7 +81,14 @@ For Donors
         </div>
        <% }%>
       </div>
-    <%  } %>
+    <%  } else { %>
+                        <div class="card-block"><center>
+                    <h5 class="card-title">No Request Present</h5>
+                    <a class="btn btn-outline-danger m-1" href="/" >Refresh<i class="fa fa-refresh"></i></a>
+
+</center>
+                </div>
+     <%  } %>
             </div>
         </div>
     </header>
