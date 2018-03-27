@@ -230,9 +230,9 @@ app.get('/requireBlood/:email/:group',(req,res)=>{
             res.json({resp : false , error : 'server error!!'});
         } else {
             fcm(` ${group} Blood required`,{ name : bank.name ,
-                                            longitude : bank.longitude ,
-                                            latitude : bank.latitude ,
-                                            phoneNo : bank.phoneNo ,
+                                            longitude : ""+bank.longitude ,
+                                            latitude : ""+bank.latitude ,
+                                            phoneNo : ""+bank.phoneNo ,
                                             email : email },email,res);
         }
 
@@ -245,12 +245,11 @@ app.get('/subscribeMe/:log/:lat',(req,res)=>{
     bank.findOne({})
     .where('longitude').gt(longitude - 0.5).lt(longitude + 0.5)
     .where('latitude').gt(latitude - 0.5).lt(latitude + 0.5)
-    .exec((err,myresp)=>{
+    .exec((err,resp)=>{
         if(err){
             res.json({resp:false, error : 'server error!!'});
         } else {
-            myresp.resp = true;
-            res.json(myresp);
+            res.json({resp : true,data : resp});
         }
     })
 
