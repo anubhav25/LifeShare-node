@@ -23,9 +23,7 @@ var payload = {
             body: body
         },
 
-    data: {
-            data: mydata
-        }
+    data: mydata
 };
 
 
