@@ -229,11 +229,7 @@ app.get('/requireBlood/:email/:group',(req,res)=>{
         if(err) {
             res.json({resp : false , error : 'server error!!'});
         } else {
-            fcm(group+" Blood required",{ name : ""+bank.name ,
-                                            longitude : ""+bank.longitude+"" ,
-                                            latitude : ""+bank.latitude+"" ,
-                                            phoneNo : ""+bank.phoneNo+"" ,
-                                            email : email+"" },email,res);
+            fcm(group+" Blood required",email,email,res);
         }
 
     })
