@@ -229,6 +229,7 @@ app.get('/requireBlood/:email/:group',(req,res)=>{
         if(err) {
             res.json({resp : false , error : 'server error!!'});
         } else {
+            email = email.replace('@','~');
             fcm(group+" Blood required",email,email,res);
         }
 
