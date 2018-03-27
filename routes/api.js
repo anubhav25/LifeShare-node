@@ -229,13 +229,22 @@ app.get('/requireBlood/:email/:group',(req,res)=>{
         if(err) {
             res.json({resp : false , error : 'server error!!'});
         } else {
-            email = email.replace('@','~');
-            fcm(group+" Blood required",email,email,res);
+            var newemail = email.replace('@','~');
+            fcm(group+" Blood required",email,newemail,res);
         }
 
     })
 })
-
+app.get('/bankDetails/:email',(req,res)=>{
+    bloodBank.find({email : req.params.email },(err,bank)=>{
+             if(err){
+            res.json({resp:false, error : 'error fetching details'});
+        } else {
+           // console.log(resp[0].email)
+            res.json({resp : true,email : email , name : name, phoneNo : phoneNo });
+        }
+    })
+})
 app.get('/subscribeMe/:log/:lat',(req,res)=>{
 
     var longitude = parseFloat(req.params.log);
