@@ -245,11 +245,12 @@ app.get('/subscribeMe/:log/:lat',(req,res)=>{
     bank.findOne({})
     .where('longitude').gt(longitude - 0.5).lt(longitude + 0.5)
     .where('latitude').gt(latitude - 0.5).lt(latitude + 0.5)
-    .exec((err,resp)=>{
+    .exec((err,myresp)=>{
         if(err){
             res.json({resp:false, error : 'server error!!'});
         } else {
-            res.json({resp : true,data : resp});
+            myresp.resp = true;
+            res.json(myresp);
         }
     })
 
